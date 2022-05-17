@@ -23,10 +23,10 @@ export const App = () => {
       <MainTitle>Phonebook</MainTitle>
       <ContactForm addContact={addContact} />
       <SubTitle>Contacts</SubTitle>
-      {contacts.length > 1 && (
+      {contacts.length >= 1 && (
         <Filter filter={filter} changeFilter={changeFilter} />
       )}
-      {contacts.length ? (
+      {contacts.length && visibleContacts.length ? (
         <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
       ) : (
         <Notification message="List is empty" />
