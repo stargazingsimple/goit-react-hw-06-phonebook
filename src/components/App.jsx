@@ -1,36 +1,19 @@
 import { ContactForm } from './ContactForm/ContactForm';
 import { Filter } from './Filter/Filter';
 import { ContactList } from './ContactList/ContactList';
-import { Notification } from './Notification/Notification';
 import { Container, MainTitle, SubTitle } from './App.styled';
 import { usePhonebook } from 'redux/phonebookSlice';
 
 export const App = () => {
-  const { contacts, filter, addContact, deleteContact, changeFilter } =
-    usePhonebook();
-
-  const filterContacts = () => {
-    const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
-    );
-  };
-
-  const visibleContacts = filterContacts();
+  const { contacts } = usePhonebook();
 
   return (
     <Container>
       <MainTitle>Phonebook</MainTitle>
-      <ContactForm addContact={addContact} />
+      <ContactForm />
       <SubTitle>Contacts</SubTitle>
-      {contacts.length >= 1 && (
-        <Filter filter={filter} changeFilter={changeFilter} />
-      )}
-      {contacts.length && visibleContacts.length ? (
-        <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
-      ) : (
-        <Notification message="List is empty" />
-      )}
+      {contacts.length >= 1 && <Filter />}
+      <ContactList />
     </Container>
   );
 };

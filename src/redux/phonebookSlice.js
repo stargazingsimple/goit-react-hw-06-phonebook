@@ -22,14 +22,6 @@ const phonebookSlice = createSlice({
         name,
         number,
       };
-      if (
-        state.contacts.items.some(
-          contactItem =>
-            contactItem.name.toLowerCase() === contact.name.toLowerCase()
-        )
-      ) {
-        return alert(`${contact.name} is already in contacts`);
-      }
       state.contacts.items.push(contact);
     },
     deleteContact(state, action) {

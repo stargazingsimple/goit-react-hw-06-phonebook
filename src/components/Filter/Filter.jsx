@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { FilterInput, FilterLabel } from './Filter.styled';
+import { usePhonebook } from 'redux/phonebookSlice';
 
-export const Filter = ({ filter, changeFilter }) => {
+export const Filter = () => {
+  const { filter, changeFilter } = usePhonebook();
   const filterInputId = nanoid();
   return (
     <FilterLabel htmlFor={filterInputId}>
@@ -15,9 +16,4 @@ export const Filter = ({ filter, changeFilter }) => {
       ></FilterInput>
     </FilterLabel>
   );
-};
-
-Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
 };
